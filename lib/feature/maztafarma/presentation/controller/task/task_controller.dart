@@ -71,6 +71,7 @@ class TaskController extends GetxController with ConnectivityMixin{
     entity = WeekDateEntity(date: saturday.day, name: DateFormat.EEEE().format(saturday).substring(0,3), currentDate: saturday.day == todayDate);
     dateList.add(entity);
 
+    dateOfTheWeek.clear();
     dateOfTheWeek.value.addAll(dateList);
     dateOfTheWeek.refresh();
   }

@@ -19,7 +19,7 @@ class TaskPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: AppSearchWidget()
             ),
-            WeekdayWidget(onDateClicked: ()=>Get.to(()=>StatusTaskPage()),),
+            WeekdayWidget(onDateClicked: (data)=>Get.to(()=>StatusTaskPage()),),
             SizedBox(height: 15),
             TodayTaskWidget()
           ],

@@ -84,6 +84,7 @@ class MasterController extends GetxController{
   }
 
   fillDocter(String value){
+    if(dokterKlinik.value.doctors == null) return '';
     var data = dokterKlinik.value.doctors!.where((element) => element.nama_dokter == value).first;
     if(data != null){
       return data.nama_dokter;
@@ -92,6 +93,7 @@ class MasterController extends GetxController{
   }
 
   fillProduct(String value){
+    if(dataProducts.value == null) return '';
     var data = dataProducts.value!.where((element) => element.nama_product == value).first;
     if(data != null){
       return data.nama_product;
