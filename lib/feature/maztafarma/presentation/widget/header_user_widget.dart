@@ -31,8 +31,8 @@ class HeaderUserWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(80),
                 //set border radius more than 50% of height and width to make circle
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(2),
+              child: const Padding(
+                padding: EdgeInsets.all(2),
                 child: CircleAvatar(
                   radius: 20,
                   backgroundColor: Colors.black12,

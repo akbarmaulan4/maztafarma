@@ -5,6 +5,7 @@ const LOGIN = '/login';
 
 //task-schedule
 const SCHEDULE_BY_DAY = '/schedule';
+const SCHEDULE_BY_DATE = '/filter-schedule';
 const SCHEDULE_DETAIL = '/schedule/detail';
 const SCHEDULE_MONTHLY = '/schedule/monthly';
 const SCHEDULE_ADD = '/schedule/add';
@@ -13,6 +14,7 @@ const CHECKIN = '/checkin';
 const CHECKIN_LANJUTAN = '/checkin-lanjutan';
 const CHECKOUT = '/checkout';
 const CHECKOUT_LANJUTAN = '/checkout-lanjutan';
+const VIEW_TASK = '/get-home';
 
 //master data
 const SCHEDULE_TYPE = '/tipe-schedule/get';

@@ -2,8 +2,8 @@
 import 'package:maztafarma/core/http/api.dart';
 import 'package:maztafarma/core/http/task/api+schedule.dart';
 import 'package:maztafarma/feature/maztafarma/data/datasources/local_sources.dart';
+import 'package:maztafarma/feature/maztafarma/data/model/home/m_home_view_task.dart';
 import 'package:maztafarma/feature/maztafarma/data/model/task/m_task.dart';
-import 'package:maztafarma/feature/maztafarma/domain/entity/task/e_task.dart';
 
 class TaskDataSources{
 
@@ -14,6 +14,19 @@ class TaskDataSources{
         handleBody: (Map<String, dynamic>? json){
           if(json != null){
             List<MTask> data = List.from(json['data']['data'] ?? []).map((e) => MTask.fromJson(e)).toList();
+            return ApiResponse<List<MTask>>(result: data);
+          }
+          return ApiResponse<List<MTask>>();
+        }
+    );
+  }
+
+  Future<ApiResponse<List<MTask>>> getTaskByDate({required Map<String, dynamic> post}){
+    return API.instance.getScheduleByDate(
+        post: post,
+        handleBody: (Map<String, dynamic>? json){
+          if(json != null){
+            List<MTask> data = List.from(json['data'] ?? []).map((e) => MTask.fromJson(e)).toList();
             return ApiResponse<List<MTask>>(result: data);
           }
           return ApiResponse<List<MTask>>();
@@ -47,6 +60,20 @@ class TaskDataSources{
             }
           }
           return ApiResponse<String>();
+        }
+    );
+  }
+
+  Future<ApiResponse<MHomeTaskView>> getViewTotalTask(){
+    var data = LocalSources().getUser();
+    return API.instance.getViewTotalTask(
+        userID: data.id_user != null ? data.id_user!:0,
+        handleBody: (Map<String, dynamic>? json){
+          if(json != null){
+            MHomeTaskView model = MHomeTaskView.fromJson(json['data']);
+            return ApiResponse<MHomeTaskView>(result: model);
+          }
+          return ApiResponse<MHomeTaskView>();
         }
     );
   }

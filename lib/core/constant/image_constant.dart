@@ -15,3 +15,8 @@ final icMonitor3d = 'assets/icon/ic_monitor_3d.png';
 final icFolder3d = 'assets/icon/ic_folder_3d.png';
 
 final placeholder = 'assets/icon/place_holder.png';
+
+//ilustration
+final noConnection = 'assets/illustration/no_connection.png';
+final taskEmpty = 'assets/illustration/task_empty.jpg';
+final noData = 'assets/illustration/no_data.jpg';

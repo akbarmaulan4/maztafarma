@@ -87,7 +87,7 @@ class _PreviewAddTaskPageState extends State<PreviewAddTaskPage> {
 
             Obx(() => ScheduleSectionHomeWidget(
               data: taskController.dataTask.value,
-              title: 'Kunjungan Terlaksana',
+              title: 'Kunjungan Hari ini',
             ))
           ],
         ),

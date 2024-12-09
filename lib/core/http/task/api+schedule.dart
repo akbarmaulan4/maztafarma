@@ -1,6 +1,7 @@
 
 import 'package:maztafarma/core/http/api.dart';
 import 'package:maztafarma/core/http/path_api.dart';
+import 'package:maztafarma/feature/maztafarma/data/model/home/m_home_view_task.dart';
 import 'package:maztafarma/feature/maztafarma/data/model/task/m_task.dart';
 
 extension APISchedule on API{
@@ -27,6 +28,21 @@ extension APISchedule on API{
     required ApiResponse<List<MTask>> Function(Map<String, dynamic> data) handleBody,
   }){
     return baseGet('$SCHEDULE_BY_DAY/$userID', handleBody);
+  }
+
+  Future<ApiResponse<MHomeTaskView>> getViewTotalTask({
+    required int userID,
+    required ApiResponse<MHomeTaskView> Function(Map<String, dynamic> data) handleBody,
+  }){
+    return baseGet('$VIEW_TASK/$userID', handleBody);
+  }
+
+  Future<ApiResponse<List<MTask>>> getScheduleByDate({
+    required Map<String, dynamic> post,
+    required ApiResponse<List<MTask>> Function(Map<String, dynamic> data) handleBody,
+    bool isApplicationJson = true
+  }){
+    return basePost('$SCHEDULE_BY_DATE', post, isApplicationJson, handleBody);
   }
 
   Future<ApiResponse> scheduleDetail(Map<String, dynamic> post, ApiResponse Function(Map<String, dynamic> data) handleBody, {bool? isApplicationJson}){

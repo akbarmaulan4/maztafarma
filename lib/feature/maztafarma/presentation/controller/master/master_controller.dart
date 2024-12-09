@@ -76,6 +76,7 @@ class MasterController extends GetxController{
   changeWaktuKunjungan(val)=> selectedWaktuKunjungan.value = val;
 
   fillScheduleType(String value){
+    if(dataScheduleType.value == null || dataScheduleType.value.length == 0) return '';
     var data = dataScheduleType.value.where((element) => element.name == value).first;
     if(data != null){
       return data.name;
@@ -84,7 +85,7 @@ class MasterController extends GetxController{
   }
 
   fillDocter(String value){
-    if(dokterKlinik.value.doctors == null) return '';
+    if(dokterKlinik.value.doctors == null || dataProducts.value.length == 0) return '';
     var data = dokterKlinik.value.doctors!.where((element) => element.nama_dokter == value).first;
     if(data != null){
       return data.nama_dokter;
@@ -93,7 +94,7 @@ class MasterController extends GetxController{
   }
 
   fillProduct(String value){
-    if(dataProducts.value == null) return '';
+    if(dataProducts.value == null || dataProducts.value.length == 0) return '';
     var data = dataProducts.value!.where((element) => element.nama_product == value).first;
     if(data != null){
       return data.nama_product;

@@ -9,6 +9,7 @@ import 'package:maztafarma/core/connection/connectivity.dart';
 import 'package:maztafarma/core/constant/dialog_constant.dart';
 import 'package:maztafarma/core/params/params.dart';
 import 'package:maztafarma/core/utils/utils.dart';
+import 'package:maztafarma/feature/maztafarma/domain/entity/home/e_home_task_view.dart';
 import 'package:maztafarma/feature/maztafarma/domain/entity/task/e_task.dart';
 import 'package:maztafarma/feature/maztafarma/domain/entity/task/week_date_entity.dart';
 import 'package:maztafarma/feature/maztafarma/domain/usecase/get_task.dart';
@@ -23,11 +24,15 @@ class TaskController extends GetxController with ConnectivityMixin{
   RxString currentMonth = ''.obs;
   RxDouble latitude = 0.0.obs;
   RxDouble longitude = 0.0.obs;
+  RxInt selectedDate = 0.obs;
 
   //param add schedule;
   Rx<AddScheduleParams> addScheduleParam = AddScheduleParams().obs;
+  Rx<EHomeTaskView> menuDashboard = EHomeTaskView().obs;
   final picker = ImagePicker();
 
+
+  changeSelectedDate(int date) => selectedDate.value = date;
 
   getDayInWeek(){
     var today = DateTime.now();
@@ -35,6 +40,8 @@ class TaskController extends GetxController with ConnectivityMixin{
 
     var todayDate = today.day;
     currentMonth.value == DateFormat("MMMM").format(today);
+
+    changeSelectedDate(todayDate);
 
     //sunday
     DateTime sunday = today.subtract(new Duration(days: today.weekday));
@@ -87,7 +94,10 @@ class TaskController extends GetxController with ConnectivityMixin{
 
   getTodayTask() async{
     // if(await isHasLogin()){
-      final result = await task.getTodayTask();
+    //   final result = await task.getTodayTask();
+    var date = DateTime.now();
+    var today = DateFormat("MM/dd/yyyy").format(date);
+    final result = await task.getTaskByDate(today, today);
       if(result.isRight){
         var right = result.right;
         dataTask.value = right;
@@ -96,6 +106,29 @@ class TaskController extends GetxController with ConnectivityMixin{
         DialogConstant.alertMessage('Informasi', result.left.toString(), () { });
       }
     // }
+  }
+  
+  getTaskByDate(int dateParam) async {
+    var date = DateTime.now();
+    var today = DateFormat("MM/dd/yyyy").format(date.copyWith(day: dateParam));
+    final result = await task.getTaskByDate(today, today);
+    if(result.isRight){
+      var right = result.right;
+      dataTask.value = right;
+      dataTask.refresh();
+    }else{
+      DialogConstant.alertMessage('Informasi', result.left.toString(), () { });
+    }
+  }
+
+  getViewTotalTask() async {
+    final result = await task.getViewTotalTask();
+    if(result.isRight){
+      var right = result.right;
+      menuDashboard.value = right;
+    }else{
+      DialogConstant.alertMessage('Informasi', result.left.toString(), () { });
+    }
   }
 
   addSchedule() async {
@@ -182,6 +215,6 @@ class TaskController extends GetxController with ConnectivityMixin{
     // TODO: implement onInit
     super.onInit();
     getDayInWeek();
-    getTodayTask();
+    // getTodayTask();
   }
 }

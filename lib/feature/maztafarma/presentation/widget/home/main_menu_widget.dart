@@ -4,10 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:maztafarma/core/constant/box_style_constant.dart';
 import 'package:maztafarma/core/constant/color_constant.dart';
 import 'package:maztafarma/core/constant/image_constant.dart';
+import 'package:maztafarma/feature/maztafarma/domain/entity/home/e_home_task_view.dart';
 
 class MainMenuWidget extends StatelessWidget {
   List<Map> data;
-  MainMenuWidget({required this.data});
+  EHomeTaskView? taskView;
+  MainMenuWidget({required this.data, this.taskView});
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +43,9 @@ class MainMenuWidget extends StatelessWidget {
                           children: [
                             Center(child: Image.asset(icMonitor3d, height: 85, width: 85,)),
                             SizedBox(height: 15),
-                            Text('Completed', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 15, fontWeight: FontWeight.w600)),
+                            Text('Daily Schedule', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 15, fontWeight: FontWeight.w600)),
                             SizedBox(height: 10),
-                            Text('86 Task', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 14)),
+                            Text('${taskView!.schedule_today} Task', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 14)),
                           ],
                         ),
                       ),
@@ -65,9 +67,9 @@ class MainMenuWidget extends StatelessWidget {
                           children: [
                             Icon(CupertinoIcons.delete_right, color: Colors.white,),
                             SizedBox(height: 15),
-                            Text('Completed', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w600)),
+                            Text('Schedule Rejected', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w600)),
                             SizedBox(height: 10),
-                            Text('86 Task', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 14)),
+                            Text('${taskView!.schedule_reject} Task', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 14)),
                           ],
                         ),
                       )
@@ -97,9 +99,9 @@ class MainMenuWidget extends StatelessWidget {
                             children: [
                               Icon(CupertinoIcons.time, color: Colors.white,),
                               SizedBox(height: 15),
-                              Text('Completed', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w600)),
+                              Text('KPI', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 15, fontWeight: FontWeight.w600)),
                               SizedBox(height: 10),
-                              Text('86 Task', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 14)),
+                              Text('Coming Soon', style: GoogleFonts.rubik().copyWith(color: Colors.white,fontSize: 14)),
                             ],
                           ),
                         ),
@@ -120,9 +122,9 @@ class MainMenuWidget extends StatelessWidget {
                             children: [
                               Center(child: Image.asset(icFolder3d, height: 85, width: 85,)),
                               SizedBox(height: 15),
-                              Text('On Going', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 15, fontWeight: FontWeight.w600)),
+                              Text('Montly Schedule', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 15, fontWeight: FontWeight.w600)),
                               SizedBox(height: 10),
-                              Text('86 Task', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 14)),
+                              Text('${taskView!.schedule_monthly} Task', style: GoogleFonts.rubik().copyWith(color: bluePrimaryColor,fontSize: 14)),
                             ],
                           ),
                         )

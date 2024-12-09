@@ -15,6 +15,7 @@ class WeekdayWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     TaskController controller = Get.find();
     controller.getDayInWeek();
+
     return Obx(() => Container(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -42,17 +43,20 @@ class WeekdayWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: controller.dateOfTheWeek.map((element) => GestureDetector(
-                  onTap: ()=>onDateClicked!(element),
+                  onTap: (){
+                    controller.changeSelectedDate(element.date);
+                    onDateClicked!(element);
+                  },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                     decoration: BoxStyleConstant.boxButton(
-                        radius: 15, color: element.currentDate ? bluePrimaryColor:Colors.transparent
+                        radius: 15, color: controller.selectedDate.value == element.date ? bluePrimaryColor:Colors.transparent
                     ),
                     child: Column(
                       children: [
-                        Text(element.name, style: GoogleFonts.rubik().copyWith(color: element.currentDate ? Colors.white:Colors.grey.shade400, fontSize: 14, fontWeight: FontWeight.w600)),
+                        Text(element.name, style: GoogleFonts.rubik().copyWith(color: controller.selectedDate.value ==  element.date ? Colors.white:Colors.grey.shade400, fontSize: 14, fontWeight: FontWeight.w600)),
                         SizedBox(height: 10),
-                        Text(element.date.toString(), style: GoogleFonts.rubik().copyWith(color: element.currentDate ? Colors.white:Colors.grey.shade400, fontSize: 14))
+                        Text(element.date.toString(), style: GoogleFonts.rubik().copyWith(color: controller.selectedDate.value ==  element.date ? Colors.white:Colors.grey.shade400, fontSize: 14))
                       ],
                     ),
                   ),

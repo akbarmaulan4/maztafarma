@@ -43,8 +43,8 @@ class _AddTaskPageState extends State<DetailTaskCheckin> {
     masterController.getShceduleType();
     masterController.getDoctorClinic();
     masterController.getProducts();
-    masterController.changeTujuan(Utils().toCamelCase(widget.data!.tujuan!));
-    masterController.changeWaktuKunjungan(Utils().toCamelCase(widget.data!.shift!));
+    masterController.changeTujuan(Utils().toCamelCase(widget.data!.tujuan ?? ''));
+    masterController.changeWaktuKunjungan(Utils().toCamelCase(widget.data!.shift ?? ''));
   }
 
   @override

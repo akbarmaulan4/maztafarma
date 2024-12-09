@@ -26,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    taskController.getViewTotalTask();
     taskController.getTodayTask();
   }
 
@@ -46,9 +47,9 @@ class _HomePageState extends State<HomePage> {
           // ),
           // SizedBox(height: 25),
           // SlideshowWidget(),
-          MainMenuWidget(data: menu),
+          Obx(() => MainMenuWidget(data: menu, taskView: taskController.menuDashboard.value,)),
           Obx(() => ScheduleSectionHomeWidget(data: taskController.dataTask.value, title: 'Today Task',),),
-          AnnounceSectionHomeWidget()
+          // AnnounceSectionHomeWidget()
         ],
       ),
     );

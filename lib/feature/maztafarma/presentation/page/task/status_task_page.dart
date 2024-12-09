@@ -8,8 +8,6 @@ import 'package:maztafarma/core/constant/box_style_constant.dart';
 import 'package:maztafarma/core/constant/color_constant.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/widget/app_bar_widget.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/widget/app_search_filter_widget.dart';
-import 'package:maztafarma/feature/maztafarma/presentation/widget/app_search_widget.dart';
-import 'package:maztafarma/feature/maztafarma/presentation/widget/task/task_list_tile_widget.dart';
 
 import 'detail_task_page.dart';
 

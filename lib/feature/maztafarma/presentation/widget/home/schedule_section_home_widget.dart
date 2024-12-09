@@ -7,6 +7,7 @@ import 'package:maztafarma/core/constant/color_constant.dart';
 import 'package:maztafarma/feature/maztafarma/domain/entity/task/e_task.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/page/task/detail_task_checkin.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/page/task/detail_task_page.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/widget/app_empty_task_widget.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/widget/task/task_list_tile_widget.dart';
 
 import '../app_text.dart';
@@ -31,7 +32,7 @@ class ScheduleSectionHomeWidget extends StatelessWidget {
             ],
           ),
           SizedBox(height: 15),
-          Container(
+          data!.length > 0 ? Container(
             child: SingleChildScrollView(
               child: Column(
                 children: data!.map((e) => TaskListTileWidget(
@@ -40,7 +41,7 @@ class ScheduleSectionHomeWidget extends StatelessWidget {
                 )).toList(),
               ),
             ),
-          )
+          ) : AppEmptyTaskWidget()
         ],
       ),
     );
