@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:maztafarma/core/constant/box_style_constant.dart';
 import 'package:maztafarma/core/constant/color_constant.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/controller/auth/auth_controler.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/controller/profile/profile_controller.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/widget/profile/header_profile_widget.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/widget/profile/profile_menu_widget.dart';
 
 
 class ProfilePage extends StatefulWidget {
@@ -15,6 +19,8 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    ProfileControlle controlle = Get.find();
+    AuthController authController = Get.find();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -23,95 +29,39 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: SafeArea(
         child: Container(
+          padding: const EdgeInsets.all(20),
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 80, width: 80,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80),
-                      //set border radius more than 50% of height and width to make circle
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(2),
-                      child: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Colors.black12,
-                        backgroundImage: NetworkImage(
-                          'https://cdn.prod.website-files.com/6318be76dbd6930c5f04cb53/631a5b3cda08e18ebf63f147_AdobeStock_246344306-scaled.jpeg',
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Text('Anggun Sasmita', style: GoogleFonts.rubik().copyWith(fontSize: 25, fontWeight: FontWeight.w600)),
-                Text('Senior Sales',  style: GoogleFonts.rubik().copyWith(fontSize: 15)),
+                //header
+                HeaderProfileWidget(),
+                Divider(),
                 SizedBox(height: 35,),
-                itemMenu(),
-                SizedBox(height: 10),
-                itemMenu(),
-                SizedBox(height: 10),
-                itemMenu()
+                ProfileMenuWidget(
+                  icon: Icons.bar_chart,
+                  title: 'Statistic',
+                  onClick: (){}
+                ),
+                SizedBox(height: 20,),
+                ProfileMenuWidget(
+                  icon: Icons.password,
+                  title: 'Change Password',
+                  onClick: (){}
+                ),
+                SizedBox(height: 20,),
+                Divider(),
+                SizedBox(height: 20,),
+                ProfileMenuWidget(
+                    icon: Icons.logout,
+                    title: 'Logout',
+                    onClick: ()=>authController.logout()
+                ),
               ],
             ),
           ),
         ),
       ),
-    );
-  }
-
-  itemMenu(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          decoration: BoxStyleConstant.boxButton(
-              radius: 16, color: Colors.purple.shade200
-          ),
-          width: MediaQuery.of(context).size.width * 0.30,
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxStyleConstant.boxButton(
-                    radius: 16, color: Colors.purple
-                ),
-                padding: EdgeInsets.all(10),
-                child: Icon(CupertinoIcons.person_alt, color: Colors.white, size: 35,),
-              ),
-              SizedBox(height: 10),
-              Text('Personal',  style: GoogleFonts.rubik().copyWith(fontSize: 16, fontWeight: FontWeight.w600)),
-              SizedBox(height: 5),
-              Text('4 Task',  style: GoogleFonts.rubik().copyWith(fontSize: 14))
-            ],
-          ),
-        ),
-        SizedBox(width: 10),
-        Container(
-          decoration: BoxStyleConstant.boxButton(
-              radius: 16, color: Colors.purple.shade200
-          ),
-          width: MediaQuery.of(context).size.width * 0.30,
-          padding: EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Container(
-                decoration: BoxStyleConstant.boxButton(
-                    radius: 16, color: Colors.purple
-                ),
-                padding: EdgeInsets.all(10),
-                child: Icon(CupertinoIcons.person_alt, color: Colors.white, size: 35,),
-              ),
-              SizedBox(height: 10),
-              Text('Work',  style: GoogleFonts.rubik().copyWith(fontSize: 16, fontWeight: FontWeight.w600)),
-              SizedBox(height: 5),
-              Text('4 Task',  style: GoogleFonts.rubik().copyWith(fontSize: 14))
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

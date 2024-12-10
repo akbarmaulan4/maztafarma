@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:maztafarma/core/constant/box_style_constant.dart';
 import 'package:maztafarma/core/constant/dialog_constant.dart';
 import 'package:maztafarma/core/theme/typography.dart';
 import 'package:maztafarma/feature/maztafarma/domain/entity/master/e_doctor.dart';
 import 'package:maztafarma/feature/maztafarma/domain/entity/master/e_product.dart';
 import 'package:maztafarma/feature/maztafarma/domain/entity/master/e_schedule_type.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/controller/master/master_controller.dart';
+import 'dart:math' as math;
 
 class AppSelectedInputWidget extends StatefulWidget {
   String? title;
@@ -86,7 +88,32 @@ class _AppSelectedInputWidgetState extends State<AppSelectedInputWidget> {
                 ),
               ),
             ),
-          )
+          ),
+          // Container(
+          //   width: double.infinity,
+          //   child: Wrap(
+          //     children: [
+          //       Directionality(
+          //         textDirection: TextDirection.rtl,
+          //         child: TextButton.icon(
+          //           onPressed: ()=>Get.back(),
+          //           label: Text('master dasd',  style: mButtonTitle,),
+          //           icon: Icon(CupertinoIcons.xmark_circle),
+          //           style: ButtonStyle(
+          //               backgroundColor: MaterialStatePropertyAll<Color>(Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0)),
+          //               foregroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+          //               shape: MaterialStatePropertyAll<RoundedRectangleBorder>(
+          //                   RoundedRectangleBorder(
+          //                       borderRadius: BorderRadius.all(Radius.circular(8))
+          //                   )
+          //               )
+          //
+          //           ),
+          //         )
+          //       ),
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );

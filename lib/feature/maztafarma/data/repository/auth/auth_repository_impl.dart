@@ -1,11 +1,14 @@
 
 import 'package:either_dart/either.dart';
+import 'package:get/get.dart';
 import 'package:maztafarma/core/connection/connectivity.dart';
+import 'package:maztafarma/core/constant/dialog_constant.dart';
 import 'package:maztafarma/core/errors/no_connection_exception.dart';
 import 'package:maztafarma/feature/maztafarma/data/datasources/auth/auth_datasources.dart';
 import 'package:maztafarma/feature/maztafarma/data/model/auth/m_login.dart';
 import 'package:maztafarma/feature/maztafarma/data/model/auth/m_token.dart';
 import 'package:maztafarma/feature/maztafarma/domain/repository/auth/auth_repository_interface.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/widget/profile/logout_widget.dart';
 
 class AuthRepository with ConnectivityMixin implements AuthRepositoryInterface{
 
@@ -35,9 +38,12 @@ class AuthRepository with ConnectivityMixin implements AuthRepositoryInterface{
   }
 
   @override
-  Future<bool> logout() {
+  Future<void> logout() async {
     // TODO: implement logout
-    throw UnimplementedError();
+    DialogConstant.showBottomSheet(
+        context: Get.context,
+        child: LogoutWidget()
+    );
   }
 
   @override

@@ -25,4 +25,8 @@ class LocalSources {
     if(data == null) return MUser();
     return MUser.fromJson(jsonDecode(data));
   }
+
+  clear(){
+    GetStorage().erase();
+  }
 }

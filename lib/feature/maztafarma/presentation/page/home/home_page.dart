@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/controller/task/task_controller.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/widget/header_user_widget.dart';
-import 'package:maztafarma/feature/maztafarma/presentation/widget/home/announce_section_home_widget.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/widget/home/main_menu_widget.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/widget/home/schedule_section_home_widget.dart';
 
@@ -33,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView(
+      child: Obx(()=>ListView(
         children: [
           HeaderUserWidget(),
           SizedBox(height: 15),
@@ -47,11 +46,11 @@ class _HomePageState extends State<HomePage> {
           // ),
           // SizedBox(height: 25),
           // SlideshowWidget(),
-          Obx(() => MainMenuWidget(data: menu, taskView: taskController.menuDashboard.value,)),
-          Obx(() => ScheduleSectionHomeWidget(data: taskController.dataTask.value, title: 'Today Task',),),
+          MainMenuWidget(data: menu, taskView: taskController.menuDashboard.value,),
+          ScheduleSectionHomeWidget(data: taskController.dataTask.value, title: 'Today Task',),
           // AnnounceSectionHomeWidget()
         ],
-      ),
+      )),
     );
   }
 }

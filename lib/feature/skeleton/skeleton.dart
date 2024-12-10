@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:maztafarma/core/constant/color_constant.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/controller/home/home_controller.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/page/task/preview_add_task_page.dart';
 import 'package:maztafarma/feature/skeleton/controller/skeleton_controller.dart';
 
@@ -17,6 +18,14 @@ class _SkeletonState extends State<Skeleton> {
 
   DateTime? currentBackPressTime;
   SkeletonController controller = SkeletonController();
+  HomeController homeController = Get.find();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeController.loadUser();
+  }
 
 
   @override
@@ -62,7 +71,7 @@ class _SkeletonState extends State<Skeleton> {
               onPressed: ()=>controller.changeMenu(2),
             ),
             IconButton(
-              icon: Icon(CupertinoIcons.folder_solid, color: controller.currentMenu.value == 3 ? greenPrimaryColor:Colors.black26),
+              icon: Icon(CupertinoIcons.person_alt_circle, color: controller.currentMenu.value == 3 ? greenPrimaryColor:Colors.black26),
               onPressed: ()=>controller.changeMenu(3),
             ),
           ],

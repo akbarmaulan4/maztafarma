@@ -17,6 +17,7 @@ import 'package:maztafarma/feature/maztafarma/domain/usecase/get_task.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/controller/auth/auth_controler.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/controller/home/home_controller.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/controller/master/master_controller.dart';
+import 'package:maztafarma/feature/maztafarma/presentation/controller/profile/profile_controller.dart';
 import 'package:maztafarma/feature/maztafarma/presentation/controller/task/task_controller.dart';
 import 'package:maztafarma/feature/skeleton/splash_screen.dart';
 
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
         Get.put(HomeController());
         Get.put(MasterController(GetMaster(MasterRepository(MasterDataSources()))));
         Get.put(TaskController(GetTask(TaskRepository(TaskDataSources()))));
+        Get.put(ProfileControlle());
       }),
       home: SplashScreen(),
     );
